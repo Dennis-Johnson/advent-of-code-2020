@@ -15,12 +15,6 @@ def main():
             
             
             lowerValid = string[lowerIndex - 1] == letter
-            '''            
-            if upperIndex > len(string) - 1:
-                #if lowerValid:
-                #    validCount += 1
-                continue
-            '''
             upperValid = string[upperIndex - 1] == letter
 
             if lowerValid ^ upperValid:
