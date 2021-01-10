@@ -32,7 +32,7 @@ def main():
         bags[outer] = contents
     
     hit = "shiny gold"
-    count = explore(bags, hit)
+    count = explore(bags, hit) - 1
     # The graph search will count an extra path of shiny gold to itself
     print(count)
 
@@ -47,22 +47,6 @@ def explore (graph, start):
         count += explore(graph, node) * num
 
     return count
-
-def find_path(graph, start, end, path=[]):
-    path = path + [start]
-    global count
-    if start == end:
-        count += 1
-        return path
-    
-    if not start in graph.keys():
-        return None
-    
-    for node in graph[start]:
-        if node not in path:
-            newpath = find_path(graph, node, end, path)
-            if newpath: return newpath
-    return None
 
 if __name__ == "__main__":
     main()

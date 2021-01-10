@@ -16,3 +16,4 @@ print(diffs)
 
 ones, threes = diffs.count(1), diffs.count(3)
 print("Product of 1 and 3 diffs = {}".format(ones * threes))
+

@@ -15,6 +15,9 @@ def main():
             continue
         
         line_set = set(line.rstrip('\n'))
+        
+        # Initialise the groupAnswers set to the line_set only 
+        # if it's the first line in the group
 
         if len(groupAnswers) == 0 and (i == 0 or lines[i-1] == "\n"):
             groupAnswers = line_set
