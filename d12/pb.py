@@ -1,9 +1,9 @@
-import math
+from math import sin, cos, pi
 
 actions = []
 def main():
-    for line in open("test.txt").readlines():
-    #for line in open("input.txt").readlines():
+    #for line in open("test.txt").readlines():
+    for line in open("input.txt").readlines():
         line = line.strip()
         action = line[0]
         amount = int(line[1:])
@@ -13,10 +13,7 @@ def main():
     x, y = 0, 0
     wx, wy = 10, 1
 
-    for a in actions:
-        act = a[0]
-        amt = a[1]
-
+    for act, amt in actions:
         if act == 'N':
             wy += amt
         elif act == 'S':
@@ -35,10 +32,10 @@ def main():
 
         print(x, y, wx, wy)
 
-    dist = abs(x) + abs(y)
-    print("Manhatten Distance = {}".format(dist))
+    print("Manhatten Distance = {}".format(abs(x) + abs(y)))
 
 def update_waypoint(amt, wx, wy):
+    
     if amt == 270:
         amt = -90
     elif amt == -270: 
@@ -48,7 +45,7 @@ def update_waypoint(amt, wx, wy):
         wx, wy = -wy, wx
     elif amt == -90:
         wx, wy = wy, -wx
-    elif amt == 180:
+    elif abs(amt) == 180:
         wx, wy = -wx, -wy
 
     return wx, wy
