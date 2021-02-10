@@ -17,30 +17,20 @@ zipped [1:] = sorted(zipped[1:], reverse = True)
 buses, offsets = zip(*zipped)
 print(buses, offsets)
 
-
-first_bus = timestamp = buses[0]
-largest_other, loff = buses[1], offsets[1]
-flag = 0
+timestamp = offsets[0]
+i = 0
+step = buses[0]
 
 while(True):
-    if (timestamp + loff) % largest_other != 0:
-        # Find next closest multiple of first_bus --> x to (timestamp + largest_other) --> n
-        x = first_bus
-        n = timestamp + largest_other
-        n = n + x // 2 
-        timestamp = n - (n % x)
-
-    flag = 0
-    for i in range(1, len(buses)):
-        if (timestamp + offsets[i]) % buses[i] != 0:
-            flag = 1
-            break
-    
-    if flag == 1:
-        timestamp += first_bus
-    else:
+    if i >= len(buses)-1:
         break
 
-print(timestamp)
+    if (timestamp + offsets[i+1]) % buses[i+1] == 0:
+        step *= buses[i+1]
+        #step = compute_lcm(buses[i], step)
+        i += 1
+    else:
+        timestamp += step
 
+print('TS: {}'.format(timestamp))
 
