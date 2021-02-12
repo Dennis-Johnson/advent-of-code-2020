@@ -9,9 +9,9 @@ for num in seq:
     history[num] = turn
     turn += 1
 
+recent = seq[-1]
 
-while turn <= 2020:
-    recent = seq[-1]
+while turn <= 30000000:
     lastTurn = history.get(recent, -1)
     history[recent] = turn - 1  
 
@@ -20,8 +20,8 @@ while turn <= 2020:
     else:
         next_ = turn - 1 - lastTurn
 
-    seq.append(next_)
+    recent = next_
     print("Turn: {} --- Recent {} --- Next {}".format(turn, recent, next_))
     turn += 1
 
-print(seq[-1])
+print (recent)
