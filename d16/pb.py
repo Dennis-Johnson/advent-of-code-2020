@@ -21,8 +21,8 @@ def couldBeIn(val):
     
     return possible
 
-fieldLines = open('fieldsTest.txt', 'r').readlines()
-#fieldLines = open('fields.txt', 'r').readlines()
+#fieldLines = open('fieldsTest.txt', 'r').readlines()
+fieldLines = open('fields.txt', 'r').readlines()
 fields = {}
 fieldNames = []
 
@@ -44,8 +44,8 @@ print(fields)
 
 validTickets = []
 
-ticketLines = open('nearbyTest.txt', 'r').readlines()
-#ticketLines = open('nearbyTickets.txt', 'r').readlines()
+#ticketLines = open('nearbyTest.txt', 'r').readlines()
+ticketLines = open('nearbyTickets.txt', 'r').readlines()
 
 for line in ticketLines:
     values = line.split(",")
@@ -71,10 +71,7 @@ for ticket in validTickets:
         possible = couldBeIn(val)
 
         accumulator[i] += possible
-    #break
     
-print(accumulator)
-
 foundDict = {}
 done = False 
 while not done:
@@ -90,6 +87,8 @@ while not done:
     if num_of_maxes.sum() <= numFields:
         # Find row number of largest element left
         i = np.where(accumulator == np.max(accumulator))[0][0]
+        j = np.where(accumulator == np.max(accumulator))[1][0]
+        
         done = True
 
     else:
@@ -100,9 +99,16 @@ while not done:
             accumulator[k][j] = 0
 
     print("Found field {} at {}".format(fieldNames[j],i))
+    foundDict[fieldNames[j]] = i
 
 
+print(foundDict)
+yourTicket = [73,59,83,127,137,151,71,139,67,53,89,79,61,109,131,103,149,97,107,101]
 
+product = 1
+for key in foundDict.keys():
+    if 'departure' in key:
+        print(key, foundDict[key])
+        product *= yourTicket[foundDict[key]]  
 
-
-
+print(product)

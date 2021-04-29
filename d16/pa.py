@@ -8,7 +8,6 @@ def isValid(val):
     return False
 
 
-#fieldLines = open('fieldsTest.txt', 'r').readlines()
 fieldLines = open('fields.txt', 'r').readlines()
 fields = []
 
@@ -26,7 +25,6 @@ print(fields)
 
 
 errorRate = 0
-#ticketLines = open('nearbyTest.txt', 'r').readlines()
 ticketLines = open('nearbyTickets.txt', 'r').readlines()
 
 for line in ticketLines:
